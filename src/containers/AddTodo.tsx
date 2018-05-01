@@ -12,7 +12,6 @@ interface AddTodoState {
 }
 
 class AddTodoComponent extends React.Component<AddTodoProps, AddTodoState> {
-  // private input: string = React.createRef
   constructor(props: AddTodoProps) {
     super(props)
     this.state = { newTodo: '' }
