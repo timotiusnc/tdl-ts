@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    // if we run `npx webpack`, this param is unused, it's used when we run `npx tsc`
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "module": "commonjs",
+    "target": "es5",
+    "jsx": "react",
+    // "strictNullChecks": true,
+    // "strictFunctionTypes": true,
+    "strict": true, // Enables noImplicitAny, noImplicitThis, alwaysStrict, strictNullChecks, strictFunctionTypes, and strictPropertyInitialization
+    // "lib": [
+    //   "dom",
+    //   "es5",
+    //   "scripthost",
+    //   //"es2015" // A dynamic import call in ES5/ES3 requires the 'Promise' constructor.  Make sure you have a declaration for the 'Promise' constructor or include 'ES2015' in your `--lib` option.
+    // ]
+  },
+  "include": [
+    "./src/**/*"
+  ]
+}
