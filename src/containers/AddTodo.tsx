@@ -2,6 +2,7 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../actions/actions'
 import { Dispatch } from 'redux';
+import { promisify } from 'util';
 
 interface AddTodoProps {
   dispatch: Dispatch
@@ -24,6 +25,8 @@ class AddTodoComponent extends React.Component<AddTodoProps, AddTodoState> {
     this.setState({
       newTodo: e.currentTarget.value
     })
+
+    // let a: Promise<Response> = fetch('http://www.google.com')
   }
 
   handleSubmit(e: React.FormEvent<HTMLFormElement>) {

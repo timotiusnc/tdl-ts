@@ -1,14 +1,14 @@
 import { connect } from 'react-redux'
 import { setVisibilityFilter, VisibilityFilters } from '../actions/actions'
 import { Link } from '../components/Link'
-import { AppState } from '../states/state'
+import { TodoAppState } from '../states/state'
 import { Dispatch } from 'redux';
 
 interface OwnProps {
   filter?: VisibilityFilters
 }
 
-function mapStateToProps(state: AppState, ownProps: OwnProps) {
+function mapStateToProps(state: TodoAppState, ownProps: OwnProps) {
   return { active: ownProps.filter === state.visibilityFilter }
 }
 

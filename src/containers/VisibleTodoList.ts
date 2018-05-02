@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { toggleTodo, VisibilityFilters } from '../actions/actions'
 import { TodoList } from '../components/TodoList'
-import { ToDo, AppState } from '../states/state'
+import { ToDo, TodoAppState } from '../states/state'
 import { Dispatch } from 'redux';
 import { Todo } from '../components/Todo';
 
@@ -16,7 +16,7 @@ function getVisibleTodos(todos: ToDo[], filter: VisibilityFilters) {
   }
 }
 
-function mapStateToProps(state: AppState) {
+function mapStateToProps(state: TodoAppState) {
   return {
     todos: getVisibleTodos(state.todos, state.visibilityFilter)
   }

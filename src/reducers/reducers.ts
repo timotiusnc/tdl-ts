@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import { TodoAction, VisibilityFilters, Types } from '../actions/actions'
 import { ToDo } from '../states/state'
 
+// Todo app
 function visibilityFilter(state = VisibilityFilters.SHOW_ALL, action: TodoAction) {
   switch (action.type) {
     case Types.SET_VISIBILITY_FILTER:
@@ -34,9 +35,9 @@ function todos(state: ToDo[] = [], action: TodoAction) {
   }
 }
 
-const todoApp = combineReducers({
+// Reddit app
+
+export const todoReducers = combineReducers({
   visibilityFilter,
   todos
 });
-
-export default todoApp
