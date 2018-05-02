@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { addTodo } from '../actions/actions'
+import { addTodo, TodoAction } from '../actions/actions'
 import { Dispatch } from 'redux';
 import { promisify } from 'util';
 
 interface AddTodoProps {
-  dispatch: Dispatch
+  dispatch: Dispatch<TodoAction>
 }
 
 interface AddTodoState {

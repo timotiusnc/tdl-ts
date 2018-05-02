@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import { TodoAction, VisibilityFilters, Types } from '../actions/actions'
-import { ToDo } from '../states/state'
+import { TodoAction, VisibilityFilters, Types, RedditAction } from '../actions/actions'
+import { ToDo, Post, Map } from '../states/state'
 
 // Todo app
 function visibilityFilter(state = VisibilityFilters.SHOW_ALL, action: TodoAction) {
@@ -35,9 +35,57 @@ function todos(state: ToDo[] = [], action: TodoAction) {
   }
 }
 
-// Reddit app
-
 export const todoReducers = combineReducers({
   visibilityFilter,
   todos
-});
+})
+
+// Reddit app
+function selectedSubreddit(state = 'reactjs', action: RedditAction) {
+  switch (action.type) {
+    case Types.SELECT_SUBREDDIT:
+      return action.subreddit
+    default:
+      return state
+  }
+}
+
+function posts(
+  state: Post = {
+    isFetching: false,
+    didInvalidate: false,
+    lastUpdated: new Date(),
+    items: []
+  },
+  action: RedditAction
+) {
+  switch (action.type) {
+    case Types.INVALIDATE_SUBREDDIT:
+      return { ...state, didInvalidate: true }
+    case Types.REQUEST_POSTS:
+      return { ...state, isFetching: true, didInvalidate: false }
+    case Types.RECEIVE_POSTS:
+      return { ...state, isFetching: false, didInvalidate: false, items: action.posts, lastUpdated: action.receivedAt }
+    default:
+      return state
+  }
+}
+
+function postsBySubreddit(state: Map<Post> = {}, action: RedditAction) {
+  switch (action.type) {
+    case Types.INVALIDATE_SUBREDDIT:
+    case Types.RECEIVE_POSTS:
+    case Types.REQUEST_POSTS:
+      return {
+        ...state,
+        [action.subreddit]: posts(state[action.subreddit], action)
+      }
+    default:
+      return state
+  }
+}
+
+export const redditReducer = combineReducers({
+  postsBySubreddit,
+  selectedSubreddit
+})

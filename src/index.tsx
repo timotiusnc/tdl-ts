@@ -1,31 +1,42 @@
-// import { createStore } from 'redux'
-// import todoApp from './reducers/reducers'
-import { addTodo, toggleTodo, setVisibilityFilter, VisibilityFilters } from './actions/actions';
-
-// const store = createStore(todoApp)
-
 import * as React from 'react'
+import thunkMiddleware from 'redux-thunk'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import { todoReducers } from './reducers/reducers'
+import { createStore, applyMiddleware } from 'redux'
+import { todoReducers, redditReducer } from './reducers/reducers'
 import { App } from './containers/App'
+import { addTodo, toggleTodo, setVisibilityFilter, VisibilityFilters, selectSubreddit, fetchPosts } from './actions/actions';
 
-const store = createStore(todoReducers)
-console.log(store.getState())
-const unsubscribe = store.subscribe(() => console.log(store.getState()))
+// Todo
+// const store = createStore(todoReducers)
+// const unsubscribe = store.subscribe(() => console.log(store.getState()))
+
+// render(
+//   <Provider store={store}>
+//     <App />
+//   </Provider>,
+//   document.getElementById('root')
+// )
+
 // store.dispatch(addTodo('Satu'))
 // store.dispatch(addTodo('Dia'))
 // store.dispatch(addTodo('Tiga'))
 // store.dispatch(toggleTodo(0))
 // store.dispatch(toggleTodo(1))
 // store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED))
+// unsubscribe()
 
-render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
+// Reddit
+const store = createStore(
+  redditReducer,
+  applyMiddleware(
+    thunkMiddleware // lets us dispatch() functions
+  )
 )
 
-// unsubscribe()
+const unsubscribe = store.subscribe(() => console.log(store.getState()))
+
+store.dispatch(selectSubreddit('reactjs'))
+store
+  .dispatch(fetchPosts('reactjs'))
+  .then(() => console.log(store.getState()))

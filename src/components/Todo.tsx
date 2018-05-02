@@ -8,7 +8,6 @@ interface TodoProps {
 
 export class Todo extends React.Component<TodoProps> {
   render() {
-    console.log(this.props.completed)
     return (
       <li
         onClick={this.props.onClick}

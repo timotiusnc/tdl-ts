@@ -25,9 +25,13 @@ export interface Post {
   items: Item[]
 }
 
+export interface Map<T> {
+  [key: string]: T
+}
+
 export interface RedditAppState {
   selectedSubreddit: string
-  postBySubreddit: Post[]
+  postBySubreddit: Map<Post>
 }
 
 // JSON example
