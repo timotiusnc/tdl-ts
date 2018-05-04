@@ -65,7 +65,7 @@ function posts(
     case Types.REQUEST_POSTS:
       return { ...state, isFetching: true, didInvalidate: false }
     case Types.RECEIVE_POSTS:
-      return { ...state, isFetching: false, didInvalidate: false, items: action.posts, lastUpdated: action.receivedAt }
+      return { ...state, isFetching: false, didInvalidate: false, items: action.posts, lastUpdated: new Date(action.receivedAt) }
     default:
       return state
   }

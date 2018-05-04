@@ -13,7 +13,7 @@ export const enum Types {
   RECEIVE_POSTS = 'RECEIVE_POSTS'
 }
 
-//VIBILITY CONSTANTS
+// VISIBILITY CONSTANTS
 export const enum VisibilityFilters {
   SHOW_ALL = 'SHOW_ALL',
   SHOW_COMPLETED = 'SHOW_COMPLETED',
@@ -83,6 +83,7 @@ export function fetchPosts(subreddit: string) {
     // This is not required by thunk middleware, but it is convenient for us.
 
     try {
+      await sleep(2000)
       const response = await fetch('https://sheets.googleapis.com/v4/spreadsheets/1hh58_NZVwsK5xgrVq1oqM0pml0hhwm-vNkvU6RcvexE/values/sheet1!A2:A?key=AIzaSyDUoSTVE22eQHkEJaEzxLuWmB-6j6NQSns')
       const json = await response.json()
       dispatch(receivePosts(subreddit, json))
@@ -109,6 +110,10 @@ export function fetchPosts(subreddit: string) {
   }
 }
 
+// Simulate Java's Thread.sleep
+function sleep(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
 
 // ACTION INTERFACES TODO
 export interface TodoAction extends Action {

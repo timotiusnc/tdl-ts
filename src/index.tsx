@@ -35,8 +35,5 @@ const store = createStore(
 )
 
 const unsubscribe = store.subscribe(() => console.log(store.getState()))
-
 store.dispatch(selectSubreddit('reactjs'))
-store
-  .dispatch(fetchPosts('reactjs'))
-  .then(() => console.log(store.getState()))
+store.dispatch(fetchPosts('reactjs'))
