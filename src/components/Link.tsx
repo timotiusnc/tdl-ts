@@ -25,28 +25,3 @@ export class Link extends React.Component<LinkProps> {
     )
   }
 }
-
-import { NavLink } from 'react-router-dom'
-
-interface LinkRouterProps {
-  active: boolean
-  filter: VisibilityFilters
-  onClick: () => void
-}
-
-export class LinkRouter extends React.Component<LinkRouterProps> {
-  render() {
-    return (
-      <NavLink
-        exact
-        to={this.props.filter === VisibilityFilters.SHOW_ALL ? '/' : `/${this.props.filter}`}
-        activeStyle={{
-          textDecoration: 'none',
-          color: 'red'
-        }}
-      >
-        {this.props.children}
-      </NavLink>
-    )
-  }
-}

@@ -12,7 +12,8 @@ module.exports = env => {
     // Enable sourcemaps for debugging webpack's output
     devtool: "source-map",
 
-    devServer: { // Tells webpack-dev-server to serve the files from the `dist` directory on `localhost:8080`
+    // Tells webpack-dev-server to serve the files from the `dist` directory on `localhost:8080`
+    devServer: {
       historyApiFallback: true, // Fallback URL for react-router-dom
       contentBase: './dist'
     },
@@ -42,12 +43,20 @@ module.exports = env => {
     module: {
       rules: [
         // CSS files
-        { test: /\.(css|jsx)$/, include: path.resolve(__dirname, "src/styles"), use: ['style-loader', 'css-loader'] },
+        {
+          test: /\.(css|jsx)$/,
+          include: path.resolve(__dirname, "src/styles"),
+          use: ['style-loader', 'css-loader']
+        },
 
         // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
         // awesome-ts-loader can't be used with webpack-dev-server (TypeError: Cannot read property '_tsInstances' of undefined)
         // https://github.com/s-panferov/awesome-typescript-loader/issues/541
-        { test: /\.tsx?$/, include: path.resolve(__dirname, "src"), loader: "ts-loader" },
+        {
+          test: /\.tsx?$/,
+          include: path.resolve(__dirname, "src"),
+          loader: "ts-loader"
+        },
 
         // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
         // Needed for production build only.

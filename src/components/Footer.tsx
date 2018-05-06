@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { FilterLink } from '../containers/FilterLink'
+// import { FilterLink } from '../containers/FilterLink'
+import { FilterLinkRouter } from '../containers/FilterLinkRouter'
 import { VisibilityFilters } from '../actions/actions'
 
 export class Footer extends React.Component<{}> {
@@ -8,17 +9,17 @@ export class Footer extends React.Component<{}> {
       <p>
         Show:
         {' '}
-        <FilterLink filter={VisibilityFilters.SHOW_ALL}>
+        <FilterLinkRouter filter={VisibilityFilters.SHOW_ALL}>
           All
-        </FilterLink>
+        </FilterLinkRouter>
         {', '}
-        <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>
+        <FilterLinkRouter filter={VisibilityFilters.SHOW_ACTIVE}>
           Active
-        </FilterLink>
+        </FilterLinkRouter>
         {', '}
-        <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>
+        <FilterLinkRouter filter={VisibilityFilters.SHOW_COMPLETED}>
           Completed
-        </FilterLink>
+        </FilterLinkRouter>
       </p>
     )
   }
