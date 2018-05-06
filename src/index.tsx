@@ -6,6 +6,7 @@ import { createStore, applyMiddleware } from 'redux'
 import { todoReducers, redditReducer } from './reducers/reducers'
 import { App } from './containers/App'
 import { addTodo, toggleTodo, setVisibilityFilter, VisibilityFilters, selectSubreddit, fetchPosts } from './actions/actions';
+import { Root } from "./containers/Root";
 
 // Todo
 // const store = createStore(todoReducers)
@@ -27,13 +28,22 @@ import { addTodo, toggleTodo, setVisibilityFilter, VisibilityFilters, selectSubr
 // unsubscribe()
 
 // Reddit
-const store = createStore(
-  redditReducer,
-  applyMiddleware(
-    thunkMiddleware // lets us dispatch() functions
-  )
-)
+// const store = createStore(
+//   redditReducer,
+//   applyMiddleware(
+//     thunkMiddleware // lets us dispatch() functions
+//   )
+// )
 
+// const unsubscribe = store.subscribe(() => console.log(store.getState()))
+// store.dispatch(selectSubreddit('reactjs'))
+// store.dispatch(fetchPosts('reactjs'))
+
+// Todo with router
+const store = createStore(todoReducers)
 const unsubscribe = store.subscribe(() => console.log(store.getState()))
-store.dispatch(selectSubreddit('reactjs'))
-store.dispatch(fetchPosts('reactjs'))
+
+render(
+  <Root store={store} />,
+  document.getElementById('root')
+)

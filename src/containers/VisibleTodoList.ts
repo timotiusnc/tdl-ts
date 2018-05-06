@@ -5,6 +5,10 @@ import { ToDo, TodoAppState } from '../states/state'
 import { Dispatch } from 'redux';
 import { Todo } from '../components/Todo';
 
+interface OwnProps {
+  filter?: VisibilityFilters
+}
+
 function getVisibleTodos(todos: ToDo[], filter: VisibilityFilters) {
   switch (filter) {
     case VisibilityFilters.SHOW_ALL:
@@ -16,9 +20,10 @@ function getVisibleTodos(todos: ToDo[], filter: VisibilityFilters) {
   }
 }
 
-function mapStateToProps(state: TodoAppState) {
+function mapStateToProps(state: TodoAppState, ownProps: OwnProps) {
   return {
-    todos: getVisibleTodos(state.todos, state.visibilityFilter)
+    // todos: getVisibleTodos(state.todos, ownProps.filter state.visibilityFilter)
+    todos: getVisibleTodos(state.todos, ownProps.filter || VisibilityFilters.SHOW_ALL)
   }
 }
 

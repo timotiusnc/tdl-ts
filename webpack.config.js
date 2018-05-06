@@ -13,6 +13,7 @@ module.exports = env => {
     devtool: "source-map",
 
     devServer: { // Tells webpack-dev-server to serve the files from the `dist` directory on `localhost:8080`
+      historyApiFallback: true, // Fallback URL for react-router-dom
       contentBase: './dist'
     },
 
