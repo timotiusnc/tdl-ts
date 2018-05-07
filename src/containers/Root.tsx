@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Provider } from "react-redux";
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import { App } from "./App";
 import { Store } from "redux";
 
@@ -12,9 +12,9 @@ export class Root extends React.Component<RootProps> {
   render() {
     return (
       <Provider store={this.props.store}>
-        <Router>
+        <BrowserRouter>
           <Route path="/:filter?" component={App} />
-        </Router>
+        </BrowserRouter>
       </Provider >
     )
   }

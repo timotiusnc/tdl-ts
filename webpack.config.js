@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = env => {
   console.log(env);
@@ -32,7 +33,9 @@ module.exports = env => {
       // Set NODE_ENV to proper mode so depdencies on libraries can adjust themselves (e.g. if production, remove logging)
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': env && JSON.stringify((env.production) ? 'production' : 'development')
-      })
+      }),
+
+      // new BundleAnalyzerPlugin()
     ],
 
     resolve: {

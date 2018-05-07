@@ -1,25 +1,29 @@
 import * as React from 'react'
-// import { FilterLink } from '../containers/FilterLink'
-import { FilterLinkRouter } from '../containers/FilterLinkRouter'
+import { FilterLink } from '../containers/FilterLink'
 import { VisibilityFilters } from '../actions/actions'
+import { Location } from 'history'
 
-export class Footer extends React.Component<{}> {
+interface FooterProps {
+  location?: Location
+}
+
+export class Footer extends React.Component<FooterProps> {
   render() {
     return (
       <p>
         Show:
         {' '}
-        <FilterLinkRouter filter={VisibilityFilters.SHOW_ALL}>
+        <FilterLink filter={VisibilityFilters.SHOW_ALL} location={this.props.location}>
           All
-        </FilterLinkRouter>
+        </FilterLink>
         {', '}
-        <FilterLinkRouter filter={VisibilityFilters.SHOW_ACTIVE}>
+        <FilterLink filter={VisibilityFilters.SHOW_ACTIVE} location={this.props.location}>
           Active
-        </FilterLinkRouter>
+        </FilterLink>
         {', '}
-        <FilterLinkRouter filter={VisibilityFilters.SHOW_COMPLETED}>
+        <FilterLink filter={VisibilityFilters.SHOW_COMPLETED} location={this.props.location}>
           Completed
-        </FilterLinkRouter>
+        </FilterLink>
       </p>
     )
   }
