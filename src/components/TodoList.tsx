@@ -7,7 +7,7 @@ interface TodoListProps {
   todos: ToDo[]
   // onToDoClick: (id: number) => { type: any, index: number }
   // onToDoClick: () => (dispatch: Dispatch<any>) => { type: any, index: number }
-  onToDoClick: () => (dispatch: Dispatch<any>) => Promise<void>
+  onToDoClick: (id: number) => (dispatch: Dispatch<any>) => Promise<void>
   // onToDoClick: (id: number) => void
 }
 
@@ -17,7 +17,7 @@ export class TodoList extends React.Component<TodoListProps> {
       <ul>
         {
           this.props.todos.map((todo) => (
-            <Todo key={todo.id} {...todo} onClick={() => this.props.onToDoClick()} />
+            <Todo key={todo.id} {...todo} onClick={() => this.props.onToDoClick(todo.id)} />
           ))
         }
       </ul>

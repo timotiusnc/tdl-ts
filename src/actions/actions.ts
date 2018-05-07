@@ -21,9 +21,9 @@ export const enum VisibilityFilters {
 }
 
 //ACTION CREATORS
-export function onToDoClick() {
-  return function (dispatch: Dispatch<any>) {
-    dispatch(toggleTodo(1))
+export function onToDoClick(id: number) {
+  return async function (dispatch: Dispatch<any>) {
+    dispatch(toggleTodo(id))
   }
 }
 

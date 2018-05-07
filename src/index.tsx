@@ -40,7 +40,7 @@ import { Root } from "./containers/Root";
 // store.dispatch(fetchPosts('reactjs'))
 
 // Todo with router
-const store = createStore(todoReducers)
+const store = createStore(todoReducers, applyMiddleware(thunkMiddleware))
 const unsubscribe = store.subscribe(() => console.log(store.getState()))
 
 render(
